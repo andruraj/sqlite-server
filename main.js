@@ -13,7 +13,7 @@ class SmallDB {
       // Queries scheduled here will be serialized.
       db.run(
         `CREATE TABLE IF NOT EXISTS projects(
-          id INT PRIMARY KEY AUTOINCREMENT,
+          id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL,
           desc TEXT,
           completed NUMERIC DEFAULT 0

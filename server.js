@@ -1,7 +1,7 @@
 const express = require("express");
+const app = express();
 const Data = require("./main");
 const db = new Data();
-const app = express();
 
 app.get("/projects/all", (req, res) => {
   db.getall()
