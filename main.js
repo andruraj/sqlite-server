@@ -71,14 +71,12 @@ class SmallDB {
     return new Promise((resolve, reject) => {
       db.serialize(() => {
         db.run(
-          `INSERT INTO projects(name, desc, completed) VALUES('${name}', '${desc}', ${completed})`
-        ).all(
-          `SELECT * from projects where name = '${name}' and desc = '${desc}' and completed = ${completed}`,
-          (err, row) => {
+          `INSERT INTO projects(name, desc, completed) VALUES('${name}', '${desc}', ${completed})`,
+          (res, err) => {
             if (err) {
               reject(err);
             } else {
-              resolve(row);
+              resolve("Added successfully");
             }
           }
         );
@@ -86,8 +84,36 @@ class SmallDB {
     });
   }
 
-  delete(id){
-      
+  update(id, name, desc, completed) {
+    return new Promise((resolve, reject) => {
+      db.serialize(() => {
+        db.run(
+          `UPDATE projects SET name = ?, desc = ?, completed = ? WHERE id = ?`,
+          [name, desc, completed, id],
+          (res, err) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve("Updated successfully");
+            }
+          }
+        );
+      });
+    });
+  }
+
+  delete(id) {
+    return new Promise((resolve, reject) => {
+      db.serialize(() => {
+        db.run(`DELETE * FROM projects WHERE id = ?`, [id], (res, err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve("Deleted successfully");
+          }
+        });
+      });
+    });
   }
 }
 
