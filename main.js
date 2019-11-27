@@ -105,7 +105,7 @@ class SmallDB {
   delete(id) {
     return new Promise((resolve, reject) => {
       db.serialize(() => {
-        db.run(`DELETE * FROM projects WHERE id = ?`, [id], (res, err) => {
+        db.run(`DELETE FROM projects WHERE id = ?`, [id], (res, err) => {
           if (err) {
             reject(err);
           } else {
