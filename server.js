@@ -7,6 +7,9 @@ const cors = require("cors");
 app.use(cors());
 app.options("*", cors());
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 app.get("/projects/all", (req, res) => {
   db.getall()
     .then(val => res.send(val))
