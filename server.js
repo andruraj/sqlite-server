@@ -3,6 +3,10 @@ const app = express();
 const Data = require("./main");
 const db = new Data();
 
+const cors = require("cors");
+app.use(cors());
+app.options("*", cors());
+
 app.get("/projects/all", (req, res) => {
   db.getall()
     .then(val => res.send(val))
