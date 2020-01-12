@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div>
+    <div style={{ margin: "20px 100px" }}>
       <h1>About Us</h1>
       <p>
         We provide online web services across the globe. We've been in business
