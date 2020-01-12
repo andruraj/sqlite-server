@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Nav from "./components/Nav";
+import Project from "./components/Project";
 
 //style
 import "./bootstrap.css";
@@ -19,6 +20,8 @@ export class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/about" component={About} />
+
+          <Route exact path="/projects/:id" component={Project} />
         </Switch>
       </BrowserRouter>
     );

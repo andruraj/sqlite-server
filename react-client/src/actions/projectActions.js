@@ -3,10 +3,28 @@ import axios from "axios";
 export const addProject = project => dispatch => {
   dispatch(clearErrors());
   axios
-    .post("/api/projects", project)
+    .post("/add", project)
     .then(res =>
       dispatch({
-        type: "ADD_PROEJCT",
+        type: "ADD_PROJECT",
+        payload: project
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: "GET_ERRORS",
+        payload: err.response.data
+      })
+    );
+  dispatch(getProjects());
+};
+
+export const updateProject = project => dispatch => {
+  axios
+    .post("/update", project)
+    .then(res =>
+      dispatch({
+        type: "UPDATE_PROJECT",
         payload: res.data
       })
     )
@@ -20,7 +38,7 @@ export const addProject = project => dispatch => {
 
 export const deleteProject = id => dispatch => {
   axios
-    .delete(`/api/projects/${id}`)
+    .delete(`/delete/${id}`)
     .then(res =>
       dispatch({
         type: "DELETE_PROJECT",
@@ -56,7 +74,7 @@ export const getProjects = () => dispatch => {
 export const getProject = id => dispatch => {
   dispatch(setProjectLoading());
   axios
-    .get(`/api/projects/${id}`)
+    .get(`/projects/${id}`)
     .then(res =>
       dispatch({
         type: "GET_PROJECT",

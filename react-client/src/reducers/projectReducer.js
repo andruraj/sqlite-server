@@ -24,6 +24,17 @@ const projectReducer = (state = initState, action) => {
         project: action.payload,
         loading: false
       };
+    case "UPDATE_PROJECT":
+      return {
+        ...state,
+        projects: state.projects.map(project => {
+          if (project.id === action.payload.id) {
+            project = action.payload;
+          }
+          return project;
+        }),
+        loading: false
+      };
     case "DELETE_PROJECT":
       return {
         ...state,
